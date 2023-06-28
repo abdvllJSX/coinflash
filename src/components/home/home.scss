@@ -1,0 +1,28 @@
+@import '../../scss/main';
+
+.home-container {
+    max-width: 1140px;
+    margin: auto;
+
+    .heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #26272b;
+        box-shadow: 0px 0px 12px #18191b;
+        border-radius: 8px;
+        margin: 2rem 1rem;
+        padding-left: .7rem 1rem;
+        font-weight: 700;
+
+        .coin-name {
+            margin-left: -4rem;
+        }
+
+        .hide-mobile {
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+}
