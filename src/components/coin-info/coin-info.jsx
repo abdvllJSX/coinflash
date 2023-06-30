@@ -2,11 +2,13 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import DOMPurify from 'dompurify'
+import Loader from '../loader/loader';
 import './Coin-info.scss';
 
 export default function CoinInfo() {
     const params = useParams();
     const [coins, setCoins] = useState({});
+    const [loading, setLoading] = useState(true)
     const url = `https://api.allorigins.win/get?url=${encodeURIComponent(
         `https://api.coingecko.com/api/v3/coins/${params.coinId}`
     )}`;
@@ -16,12 +18,21 @@ export default function CoinInfo() {
             .get(url)
             .then((res) => {
                 const response = JSON.parse(res.data.contents);
+                console.log(res)
                 setCoins(response);
+                setLoading(false); // Set loading state to false after successful data fetch
             })
             .catch((error) => {
                 console.log(error);
+                setLoading(false); // Set loading state to false in case of an error
             });
     }, [url]);
+
+    console.log(coins);
+
+    if (loading) {
+        return <Loader />;
+    }
 
     console.log(coins)
     return (
@@ -33,7 +44,7 @@ export default function CoinInfo() {
 
                 <div className="content">
                     <div className="rank">
-                        <span className="rank-btn">Bank #{coins.market_cap_rank}</span>
+                        <span className="rank-btn">Rank #{coins.market_cap_rank}</span>
                     </div>
 
                     <div className="info">
@@ -44,7 +55,7 @@ export default function CoinInfo() {
                         </div>
 
                         <div className="coin-price">
-                            {coins.market_data?.cu ? <h1>{coins.market_data.current_price}</h1> : null}
+                            <h1>${coins.market_data.current_price.usd.toLocaleString()}</h1> 
                         </div>
                     </div>
                 </div>
@@ -64,12 +75,12 @@ export default function CoinInfo() {
 
                         <tbody>
                             <tr>
-                                <td>{coins.market_data?.price_change_1h_in_currency ? coins.market_data.price_change_1h_in_currency.usd : null}</td>
-                                <td>{coins.market_data?.price_change_24h_in_currency ? coins.market_data.price_change_24h_in_currency.usd : null}</td>
-                                <td>{coins.market_data?.price_change_7d_in_currency ? coins.market_data.price_change_7d_in_currency.usd : null}</td>
-                                <td>{coins.market_data?.price_change_14d_in_currency ? coins.market_data.price_change_14d_in_currency.usd : null}</td>
-                                <td>{coins.market_data?.price_change_30d_in_currency ? coins.market_data.price_change_30d_in_currency.usd : null}</td>
-                                <td>{coins.market_data?.price_change_1yr_in_currency ? coins.market_data.price_change_1yr_in_currency.usd : null}</td>
+                                <td>{coins.market_data?.price_change_percentage_1h_in_currency ? coins.market_data.price_change_percentage_1h_in_currency.usd : null}</td>
+                                <td>{coins.market_data?.price_change_percentage_24h_in_currency ? coins.market_data.price_change_percentage_24h_in_currency.usd : null}</td>
+                                <td>{coins.market_data?.price_change_percentage_7d_in_currency ? coins.market_data.price_change_percentage_7d_in_currency.usd : null}</td>
+                                <td>{coins.market_data?.price_change_percentage_14d_in_currency ? coins.market_data.price_change_percentage_14d_in_currency.usd : null}</td>
+                                <td>{coins.market_data?.price_change_percentage_30d_in_currency ? coins.market_data.price_change_percentage_30d_in_currency.usd : null}</td>
+                                <td>{coins.market_data?.price_change_percentage_1y_in_currency ? coins.market_data.price_change_percentage_1y_in_currency.usd : null}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -80,12 +91,12 @@ export default function CoinInfo() {
                         <div className="left">
                             <div className="row">
                                 <h4>24 Hours Low</h4>
-                                {coins.market_data_24h ? <p>{coins.market_data.low_24h.usd}</p> : null}
+                                {coins.market_data ? <p>${coins.market_data.low_24h.usd.toLocaleString()}</p> : null}
                             </div>
 
                             <div className="row">
                                 <h4>24 Hours High</h4>
-                                {coins.market_data_24h ? <p>{coins.market_data.low_24h.usd}</p> : null}
+                                {coins.market_data ? <p>${coins.market_data.low_24h.usd.toLocaleString()}</p> : null}
 
                             </div>
 
@@ -93,12 +104,12 @@ export default function CoinInfo() {
                         <div className="right">
                             <div className="row">
                                 <h4>Martket Cap</h4>
-                                {coins.market_data_24h ? <p>{coins.market_data.market_cap.usd}</p> : null}
+                                {coins.market_data ? <p>${coins.market_data.market_cap.usd.toLocaleString()}</p> : null}
                             </div>
 
                             <div className="row">
                                 <h4>Circulating Supply</h4>
-                                {coins.market_data_24h ? <p>{coins.market_data.circulating_supply}</p> : null}
+                                {coins.market_data ? <p>${coins.market_data.circulating_supply.toLocaleString()}</p> : null}
                             </div>
                         </div>
                     </div>

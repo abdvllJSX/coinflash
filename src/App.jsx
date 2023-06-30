@@ -3,9 +3,11 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './components/home/home';
 import CoinInfo from './components/coin-info/coin-info';
 import Navbar from './components/navbar/navbar';
+import Loader from './components/loader/loader';
 
 function App() {
   const [coins, setCoins] = useState([]);
+  const [loading, setLoading] = useState(true); // Set initial loading state to true
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,8 +22,10 @@ function App() {
 
         const data = await response.json();
         setCoins(data);
+        setLoading(false); // Set loading state to false after successful data fetch
       } catch (error) {
         console.log(error);
+        setLoading(false); // Set loading state to false in case of an error
       }
     };
 
@@ -33,10 +37,14 @@ function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home coins={coins} />} />
-        <Route path="/coins/:coinId" element={<CoinInfo />} />
-      </Routes>
+      {loading ? ( // Render Loader component if loading state is true
+        <Loader />
+      ) : (
+        <Routes>
+          <Route path="/" element={<Home coins={coins} />} />
+          <Route path="/coins/:coinId" element={<CoinInfo />} />
+        </Routes>
+      )}
     </>
   );
 }
