@@ -20,26 +20,39 @@
         cursor: pointer;
     }
 
-    .left{
+    .left {
         display: flex;
         justify-content: center;
         width: 20%;
+
         @include mobile {
             width: 33%;
         }
-        p{
+
+        p {
             @include mobile {
                 font-size: 16px;
                 font-weight: 500;
             }
         }
     }
+
     .img-symbol {
         display: flex;
-        width: 120px;
+        // width: 70px;
         height: 100px;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
+
+        // .img {
+            
+        //     border: 1px solid red;
+        // }
+
+        // .symbol-paragraph {
+        //     border: 1px solid red;
+        // }
+
         @include mobile {
             width: 33%;
         }

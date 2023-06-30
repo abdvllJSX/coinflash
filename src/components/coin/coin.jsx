@@ -5,8 +5,12 @@ export default function Coin({ coins }) {
             <div className="coin-row">
                 <p>{coins.market_cap_rank}</p>
                 <div className="img-symbol">
-                    <img src={coins.image} alt="" />
-                    <p>{coins.symbol.toUpperCase()}</p>
+                    <div className="img">
+                        <img src={coins.image} alt="" />
+                    </div>
+                    <div className="symbol-paragraph">
+                        <p>{coins.symbol.toUpperCase()}</p>
+                    </div>
                 </div>
                 <div className="left">
                     <p>{coins.current_price.toLocaleString()}$</p>
