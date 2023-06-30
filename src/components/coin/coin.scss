@@ -11,7 +11,7 @@
     color: white;
     margin: 2rem 1rem;
     transition: 0.5s ease-in-out;
-    padding: .7rem 1rem;
+    padding: .3rem 1rem;
     font-weight: 700;
 
     &:hover {
@@ -20,15 +20,35 @@
         cursor: pointer;
     }
 
+    .left{
+        display: flex;
+        justify-content: center;
+        width: 20%;
+        @include mobile {
+            width: 33%;
+        }
+        p{
+            @include mobile {
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+    }
     .img-symbol {
         display: flex;
+        width: 120px;
+        height: 100px;
+        justify-content: center;
         align-items: center;
+        @include mobile {
+            width: 33%;
+        }
     }
 
     img {
         height: 40px;
         margin-right: 8px;
-        width: auto;
+        width: 40px;
     }
 
     .hide-mobile {
