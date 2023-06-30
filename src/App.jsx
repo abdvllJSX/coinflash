@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/home/home';
 import CoinInfo from './components/coin-info/coin-info';
+import Navbar from './components/navbar/navbar';
 
 function App() {
   const [coins, setCoins] = useState([]);
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home coins={coins} />} />
         <Route path="/coins/:coinId" element={<CoinInfo />} />

@@ -1,0 +1,19 @@
+@import '../../scss/main';
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+
+    .nav-element{
+        text-transform: uppercase;
+
+        & > a {
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+    }
+}
