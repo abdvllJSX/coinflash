@@ -55,7 +55,7 @@ export default function CoinInfo() {
                         </div>
 
                         <div className="coin-price">
-                            <h1>${coins.market_data.current_price.usd.toLocaleString()}</h1> 
+                            <h1>{coins.market_data.current_price.usd.toLocaleString()}$</h1> 
                         </div>
                     </div>
                 </div>
@@ -91,12 +91,12 @@ export default function CoinInfo() {
                         <div className="left">
                             <div className="row">
                                 <h4>24 Hours Low</h4>
-                                {coins.market_data ? <p>${coins.market_data.low_24h.usd.toLocaleString()}</p> : null}
+                                {coins.market_data ? <p>{coins.market_data.low_24h.usd.toLocaleString()}$</p> : null}
                             </div>
 
                             <div className="row">
                                 <h4>24 Hours High</h4>
-                                {coins.market_data ? <p>${coins.market_data.low_24h.usd.toLocaleString()}</p> : null}
+                                {coins.market_data ? <p>{coins.market_data.low_24h.usd.toLocaleString()}$</p> : null}
 
                             </div>
 
@@ -104,12 +104,12 @@ export default function CoinInfo() {
                         <div className="right">
                             <div className="row">
                                 <h4>Martket Cap</h4>
-                                {coins.market_data ? <p>${coins.market_data.market_cap.usd.toLocaleString()}</p> : null}
+                                {coins.market_data ? <p>{coins.market_data.market_cap.usd.toLocaleString()}$</p> : null}
                             </div>
 
                             <div className="row">
                                 <h4>Circulating Supply</h4>
-                                {coins.market_data ? <p>${coins.market_data.circulating_supply.toLocaleString()}</p> : null}
+                                {coins.market_data ? <p>{coins.market_data.circulating_supply.toLocaleString()}$</p> : null}
                             </div>
                         </div>
                     </div>
