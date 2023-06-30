@@ -11,8 +11,12 @@
     color: white;
     margin: 2rem 1rem;
     transition: 0.5s ease-in-out;
-    padding: .3rem 1rem;
+    padding: .2rem 1rem;
     font-weight: 700;
+
+    @include mobile {
+        padding: .1rem 1rem;
+    }
 
     &:hover {
         transform: scale(1.04);
@@ -45,7 +49,7 @@
         align-items: center;
 
         // .img {
-            
+
         //     border: 1px solid red;
         // }
 

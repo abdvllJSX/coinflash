@@ -14,8 +14,11 @@
         color: white;
         margin: 2rem 1rem;
         transition: 0.5s ease-in-out;
-        padding: .7rem 1rem;
+        padding: .2rem 1rem;
         font-weight: 700;
+        @include mobile {
+            padding: .1rem 1rem;
+        }
         .paragraph{
             display: flex;
             justify-content: center;
