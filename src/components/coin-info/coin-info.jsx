@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import DOMPurify from 'dompurify'
 import Loader from '../loader/loader';
-import './Coin-info.scss';
+import './coin-info.scss';
 
 export default function CoinInfo() {
     const params = useParams();
@@ -15,26 +15,30 @@ export default function CoinInfo() {
 
     useEffect(() => {
         axios
-            .get(url)
-            .then((res) => {
-                const response = JSON.parse(res.data.contents);
-                console.log(res)
-                setCoins(response);
-                setLoading(false); // Set loading state to false after successful data fetch
-            })
-            .catch((error) => {
-                console.log(error);
-                setLoading(false); // Set loading state to false in case of an error
-            });
-    }, [url]);
-
-    console.log(coins);
-
-    if (loading) {
+          .get(url)
+          .then((res) => {
+            const response = JSON.parse(res.data.contents);
+            console.log(res);
+            setCoins(response);
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.log(error);
+            setLoading(false);
+            setCoins({ error: error.message }); // Set the error message in the state
+          });
+      }, [url]);
+    
+      console.log(coins);
+    
+      if (loading) {
         return <Loader />;
-    }
-
-    console.log(coins)
+      }
+    
+      if (coins.error) {
+        // Display JSX element for the error
+        return <div>Error: {coins.error}</div>;
+      }
     return (
         <>
             <div className="coin-container">
