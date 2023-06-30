@@ -73,7 +73,7 @@ export default function CoinInfo() {
                                 <th>7d</th>
                                 <th>14d</th>
                                 <th>30d</th>
-                                <th>1yr</th>
+                                <th className='mobile'>1yr</th>
                             </tr>
                         </thead>
 
@@ -84,7 +84,7 @@ export default function CoinInfo() {
                                 <td>{coins.market_data?.price_change_percentage_7d_in_currency ? coins.market_data.price_change_percentage_7d_in_currency.usd : null}</td>
                                 <td>{coins.market_data?.price_change_percentage_14d_in_currency ? coins.market_data.price_change_percentage_14d_in_currency.usd : null}</td>
                                 <td>{coins.market_data?.price_change_percentage_30d_in_currency ? coins.market_data.price_change_percentage_30d_in_currency.usd : null}</td>
-                                <td>{coins.market_data?.price_change_percentage_1y_in_currency ? coins.market_data.price_change_percentage_1y_in_currency.usd : null}</td>
+                                <td className='mobile'>{coins.market_data?.price_change_percentage_1y_in_currency ? coins.market_data.price_change_percentage_1y_in_currency.usd : null}</td>
                             </tr>
                         </tbody>
                     </table>
